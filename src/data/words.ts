@@ -1,62 +1,59 @@
+import baseGameGray from './base_game_gray.json';
+import baseGameRed from './base_game_red.json';
+
 export interface Word {
   word: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'hard';
 }
 
-export const WORD_LIST: Word[] = [
-  // Easy words
-  { word: "banana", difficulty: "easy" },
-  { word: "fire", difficulty: "easy" },
-  { word: "mountain", difficulty: "easy" },
-  { word: "water", difficulty: "easy" },
-  { word: "book", difficulty: "easy" },
-  { word: "phone", difficulty: "easy" },
-  { word: "music", difficulty: "easy" },
-  { word: "pizza", difficulty: "easy" },
-  { word: "cookie", difficulty: "easy" },
-  { word: "rainbow", difficulty: "easy" },
-  { word: "butterfly", difficulty: "easy" },
-  { word: "elephant", difficulty: "easy" },
-  { word: "basketball", difficulty: "easy" },
-  { word: "computer", difficulty: "easy" },
-  { word: "umbrella", difficulty: "easy" },
+interface RawWordData {
+  "1": string;
+  "3": string;
+}
+
+interface GameData {
+  game_data: RawWordData[];
+}
+
+// Parse the actual Poetry for Neanderthals word lists
+const parseWordList = (gameData: GameData): Word[] => {
+  const words: Word[] = [];
   
-  // Medium words
-  { word: "telescope", difficulty: "medium" },
-  { word: "helicopter", difficulty: "medium" },
-  { word: "refrigerator", difficulty: "medium" },
-  { word: "hurricane", difficulty: "medium" },
-  { word: "pyramid", difficulty: "medium" },
-  { word: "volcano", difficulty: "medium" },
-  { word: "treasure", difficulty: "medium" },
-  { word: "dinosaur", difficulty: "medium" },
-  { word: "marathon", difficulty: "medium" },
-  { word: "carnival", difficulty: "medium" },
-  { word: "democracy", difficulty: "medium" },
-  { word: "calculator", difficulty: "medium" },
-  { word: "newspaper", difficulty: "medium" },
-  { word: "microwave", difficulty: "medium" },
-  { word: "kangaroo", difficulty: "medium" },
+  gameData.game_data.forEach((item) => {
+    // Add the 1-point (easy) word
+    if (item["1"]) {
+      words.push({
+        word: item["1"],
+        difficulty: 'easy'
+      });
+    }
+    
+    // Add the 3-point (hard) word
+    if (item["3"]) {
+      words.push({
+        word: item["3"],
+        difficulty: 'hard'
+      });
+    }
+  });
   
-  // Hard words
-  { word: "sophisticated", difficulty: "hard" },
-  { word: "philosophical", difficulty: "hard" },
-  { word: "entrepreneur", difficulty: "hard" },
-  { word: "ambiguous", difficulty: "hard" },
-  { word: "consciousness", difficulty: "hard" },
-  { word: "bureaucracy", difficulty: "hard" },
-  { word: "metamorphosis", difficulty: "hard" },
-  { word: "procrastination", difficulty: "hard" },
-  { word: "serendipity", difficulty: "hard" },
-  { word: "paradigm", difficulty: "hard" },
-  { word: "juxtaposition", difficulty: "hard" },
-  { word: "photosynthesis", difficulty: "hard" },
-  { word: "cryptocurrency", difficulty: "hard" },
-  { word: "claustrophobia", difficulty: "hard" },
-  { word: "onomatopoeia", difficulty: "hard" },
-];
+  return words;
+};
+
+// Combine both gray and red decks
+const grayWords = parseWordList(baseGameGray as GameData);
+const redWords = parseWordList(baseGameRed as GameData);
+
+export const WORD_LIST: Word[] = [...grayWords, ...redWords];
 
 export const getRandomWord = (): Word => {
   const randomIndex = Math.floor(Math.random() * WORD_LIST.length);
   return WORD_LIST[randomIndex];
+};
+
+// Stats for fun
+export const STATS = {
+  totalWords: WORD_LIST.length,
+  easyWords: WORD_LIST.filter(w => w.difficulty === 'easy').length,
+  hardWords: WORD_LIST.filter(w => w.difficulty === 'hard').length,
 };
