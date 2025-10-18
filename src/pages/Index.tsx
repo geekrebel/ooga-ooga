@@ -1,13 +1,31 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { GameProvider, useGame } from '@/contexts/GameContext';
+import { WelcomeScreen } from '@/components/game/WelcomeScreen';
+import { TeamSetup } from '@/components/game/TeamSetup';
+import { GamePlay } from '@/components/game/GamePlay';
+import { RoundSummary } from '@/components/game/RoundSummary';
+
+const GameContent = () => {
+  const { gamePhase } = useGame();
+
+  switch (gamePhase) {
+    case 'welcome':
+      return <WelcomeScreen />;
+    case 'setup':
+      return <TeamSetup />;
+    case 'playing':
+      return <GamePlay />;
+    case 'roundSummary':
+      return <RoundSummary />;
+    default:
+      return <WelcomeScreen />;
+  }
+};
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <GameProvider>
+      <GameContent />
+    </GameProvider>
   );
 };
 
