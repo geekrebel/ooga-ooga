@@ -32,7 +32,7 @@ interface GameContextType extends GameState {
   tick: () => void;
 }
 
-const GameContext = createContext<GameContextType | undefined>(undefined);
+const GameContext = createContext<GameContextType>({} as GameContextType);
 
 const INITIAL_STATE: GameState = {
   teams: [
@@ -192,9 +192,9 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
 };
 
-export const useGame = () => {
+export const useGame = (): GameContextType => {
   const context = useContext(GameContext);
-  if (!context) {
+  if (!context || Object.keys(context).length === 0) {
     throw new Error('useGame must be used within GameProvider');
   }
   return context;
