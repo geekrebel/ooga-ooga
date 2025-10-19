@@ -13,7 +13,7 @@ export const WelcomeScreen = () => {
           <div className="flex items-center justify-center gap-4">
             <Flame className="w-12 h-12 text-accent animate-pulse-glow" />
             <h1 className="text-6xl md:text-7xl font-caveman text-primary tracking-wider">
-              UGHH!
+              OOGA!
             </h1>
             <Flame className="w-12 h-12 text-accent animate-pulse-glow" />
           </div>
@@ -35,7 +35,7 @@ export const WelcomeScreen = () => {
               <div>
                 <h4 className="font-bold text-lg">Use One Syllable Words</h4>
                 <p className="text-muted-foreground">
-                  Describe the word using only single-syllable words. "Big" is good. "Large" is bad!
+                  Describe the word using only single-syllable words. "Big" is good. "Tel-e-phone" is bad!
                 </p>
               </div>
             </div>
@@ -53,9 +53,9 @@ export const WelcomeScreen = () => {
             <div className="flex gap-4">
               <span className="text-3xl">💥</span>
               <div>
-                <h4 className="font-bold text-lg">UGH! Button</h4>
+                <h4 className="font-bold text-lg">OOGA! Button</h4>
                 <p className="text-muted-foreground">
-                  Break the rule? The other team smashes the UGH! button and you lose a point!
+                  Break the rule? The other team smashes the OOGA! button and you lose a point!
                 </p>
               </div>
             </div>
@@ -65,7 +65,7 @@ export const WelcomeScreen = () => {
               <div>
                 <h4 className="font-bold text-lg">Beat the Clock</h4>
                 <p className="text-muted-foreground">
-                  Get as many words as possible before time runs out. +1 for correct, -1 for UGH!
+                  Get as many words as possible before time runs out. +1 for correct, -1 for OOGA!
                 </p>
               </div>
             </div>

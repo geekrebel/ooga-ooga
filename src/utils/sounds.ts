@@ -25,9 +25,9 @@ export const playOoga = () => {
 };
 
 export const playUgh = () => {
-  // Deep, grunting "UGH!" sound
-  createOscillator(100, 0.2, 'sawtooth');
-  setTimeout(() => createOscillator(80, 0.3, 'sawtooth'), 100);
+  // Happy, ascending "OOGA!" sound (swapped from playOoga)
+  createOscillator(200, 0.1, 'square');
+  setTimeout(() => createOscillator(300, 0.15, 'square'), 100);
   
   // Add vibration if available
   if ('vibrate' in navigator) {

@@ -106,12 +106,12 @@ export const GamePlay = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
             <Button
               variant="ooga"
               size="huge"
               onClick={onCorrect}
-              className="animate-pulse-glow"
+              className="animate-pulse-glow w-full"
             >
               <Check className="w-8 h-8 mr-2" />
               CORRECT!
@@ -120,17 +120,17 @@ export const GamePlay = () => {
               variant="ugh"
               size="huge"
               onClick={onUgh}
-              className="animate-shake"
+              className="animate-shake w-full h-[30vh]"
             >
-              <AlertCircle className="w-8 h-8 mr-2" />
-              UGH!
+              <AlertCircle className="w-12 h-12 mr-2" />
+              <span className="text-5xl">OOGA!</span>
             </Button>
           </div>
 
           {/* Instructions */}
           <div className="bg-card/50 rounded-lg p-4 text-sm text-muted-foreground">
             <p className="font-bold mb-2">{opposingTeam.name} - Watch for rule breaks!</p>
-            <p>Press <span className="text-destructive font-bold">UGH!</span> if {activeTeam.name} uses multi-syllable words or gestures.</p>
+            <p>Press <span className="text-destructive font-bold">OOGA!</span> if {activeTeam.name} uses multi-syllable words or gestures.</p>
           </div>
         </div>
       </div>
